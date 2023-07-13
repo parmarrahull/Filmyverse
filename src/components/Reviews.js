@@ -4,9 +4,10 @@ import { reviewsRef, db } from '../firebase/firebase';
 import { addDoc, doc, updateDoc, query, where, getDocs } from 'firebase/firestore';
 import { TailSpin, ThreeDots } from 'react-loader-spinner';
 import swal from 'sweetalert';
-import {Appstate} from '../App';
+import { Appstate } from '../App';
 
-const Reviews = ({ id, prevRating, userRated }) => {
+const Reviews = (props) => {
+  const { id, prevRating, userRated } = props
   const useAppstate = useContext(Appstate);
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ const Reviews = ({ id, prevRating, userRated }) => {
   const [data, setData] = useState([]);
   const [newAdded, setNewAdded] = useState(0);
   const [reviewsLoading, setReviewsLoading] = useState(false);
-// console.log("===========",useAppstate);
+  // console.log("===========",useAppstate);
 
   const sendReview = async () => {
     setLoading(true);
