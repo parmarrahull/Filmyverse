@@ -12,7 +12,7 @@ const Header = () => {
         <Link to={'/'}>
           <span>Filmy<span className='text-white'>Verse</span></span>
         </Link>
-        {/* {useAppstate.login ? */}
+        {useAppstate.login ?
           <Link to={'/addmovie'}>
             <h1 className='text-lg cursor-pointer flex items-center'>
               <Button>
@@ -20,7 +20,7 @@ const Header = () => {
                 <span className='text-white'>Add New</span>
               </Button>
             </h1></Link>
-          {/* :
+          :
           <Link to={'/login'}>
             <h1 className='text-lg bg-green-500 cursor-pointer flex items-center'>
               <Button>
@@ -28,7 +28,7 @@ const Header = () => {
               </Button>
             </h1>
           </Link>
-        } */}
+        }
       </div>
     </>
   )

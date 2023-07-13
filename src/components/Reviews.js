@@ -5,22 +5,23 @@ import { addDoc, doc, updateDoc, query, where, getDocs } from 'firebase/firestor
 import { TailSpin, ThreeDots } from 'react-loader-spinner';
 import swal from 'sweetalert';
 import { Appstate } from '../App';
+import { useNavigate } from 'react-router-dom/dist';
 
 const Reviews = (props) => {
   const { id, prevRating, userRated } = props
   const useAppstate = useContext(Appstate);
+  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState("");
   const [data, setData] = useState([]);
   const [newAdded, setNewAdded] = useState(0);
   const [reviewsLoading, setReviewsLoading] = useState(false);
-  // console.log("===========",useAppstate);
 
   const sendReview = async () => {
     setLoading(true);
     try {
-      // if (useAppstate.login) {
+      if (useAppstate.login) {
       await addDoc(reviewsRef, {
         movieid: id,
         name: useAppstate.userName,
@@ -45,9 +46,9 @@ const Reviews = (props) => {
         buttons: false,
         timer: 3000
       })
-      // } else {
-      //   navigate('/login')
-      // }
+      } else {
+        navigate('/login')
+      }
     } catch (error) {
       swal({
         title: error.message,
